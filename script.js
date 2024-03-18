@@ -38,20 +38,27 @@ function addR() {
 
 // Add a column
 function addC() {
-  // add a new column to the table
-
-  for (let i = 0; i < table.rows.length; i++) {
-    // loop through the rows
-    let cell = table.rows[i].insertCell(table.rows[i].cells.length); // insert a new cell at the end of each row
+  // add a new column to the table, perform all the same steps as adding a row, but for columns
+  numCols++; // increment the number of columns
+  if (numRows === 0) {
+    // if there are no rows at the beginning
+    numRows++; // increment the number of rows
+    let row = table.insertRow(); // insert a new row at the beginning of the table
+    let cell = row.insertCell(); // insert a new cell at the end of the row
     cell.onclick = function () {
       // add an event listener to the new cell
       cell.style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
     };
+  } else {
+    for (let i = 0; i < table.rows.length; i++) {
+      // loop through the rows
+      let cell = table.rows[i].insertCell(-1); // insert a new cell at the end of the row
+      cell.onclick = function () {
+        // add an event listener to the new cell
+        cell.style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
+      };
+    }
   }
-  numCols++; // increment the number of columns
-  numRows = table.rows.length; // set the number of rows to the number of rows in the table
-  console.log(numRows); // log the number of rows
-  console.log(numCols); // log the number of columns
 }
 
 // Remove a row
