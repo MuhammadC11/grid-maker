@@ -104,6 +104,11 @@ function selectColor() {
 
 // Fill all uncolored cells
 function fillU() {
+  if (colorSelected === "SELECT") {
+    // if no color is selected
+    alert("Please select a color first"); // alert the user to select a color first
+    return; // exit the function
+  }
   let changed = false; // flag to track if any cells were changed
 
   for (let i = 0; i < table.rows.length; i++) {
