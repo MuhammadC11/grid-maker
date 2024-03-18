@@ -128,11 +128,16 @@ function fillU() {
 // Fill all cells
 function fillAll() {
   //fill all cells with the selected color regardless of their current color
+  if (colorSelected === "SELECT") {
+    // if no color is selected
+    alert("Please select a color first"); // alert the user to select a color first
+    return; // exit the function
+  }
   for (let i = 0; i < table.rows.length; i++) {
-    // loop through the rows
+    // loop through the rows in the table
     for (let j = 0; j < table.rows[i].cells.length; j++) {
-      // loop through the cells in each row
-      table.rows[i].cells[j].style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
+      // loop through the cells in each row of the table
+      table.rows[i].cells[j].style.backgroundColor = colorSelected; // set the background color of the cell to the selected color, regardless of its current color
     }
   }
   console.log("Fill All"); // log the action
