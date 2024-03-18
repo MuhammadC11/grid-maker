@@ -124,7 +124,7 @@ function fillU() {
 
   if (!changed) {
     // if no cells were changed
-    alert("All cells are already colored!"); // alert to inform the user that all cells are already colored
+    alert("All cells are already colored or non-existent"); // alert to inform the user that all cells are already colored or non-existent
   }
 
   console.log("Fill All Uncolored");
