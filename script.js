@@ -1,7 +1,7 @@
 // Declare global variables
 let numRows = 0;
 let numCols = 0;
-let colorSelected = "white";
+let colorSelected = "SELECT";
 let table = document.getElementById("grid"); // get the table by id
 
 window.onload = function () {
@@ -10,9 +10,6 @@ window.onload = function () {
 // Add a row
 
 function addR() {
-  if (numRows == 0) {
-    numCols = 0; //reset the number of columns to 0 if there are no rows
-  }
   numRows++; // increment the number of rows
   let row = table.insertRow(); // insert a new row at the end of the table
 
@@ -41,9 +38,6 @@ function addR() {
 
 // Add a column
 function addC() {
-  if (numCols == 0) {
-    numRows = 0; //reset the number of rows to 0 if there are no columns
-  }
   // add a new column to the table, first check if there are no rows, then add a row and a cell to that row but after that, it will keep adding cells to the existing rows thus adding a new column.
   numCols++; // increment the number of columns
   if (numRows === 0) {
