@@ -104,19 +104,25 @@ function selectColor() {
 
 // Fill all uncolored cells
 function fillU() {
-  // fill all uncolored cells with the selected color
+  let changed = false; // flag to track if any cells were changed
+
   for (let i = 0; i < table.rows.length; i++) {
-    // loop through the rows
     for (let j = 0; j < table.rows[i].cells.length; j++) {
       // loop through the cells in each row
       if (table.rows[i].cells[j].style.backgroundColor === "") {
-        // check if the cell is uncolored
+        // if the cell is not colored (i.e. its background color is empty)
         table.rows[i].cells[j].style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
+        changed = true; // a cell was changed so set the flag to true
       }
     }
   }
 
-  console.log("Fill All Uncolored"); // log the action
+  if (!changed) {
+    // if no cells were changed
+    alert("All cells are already colored!"); // alert to inform the user that all cells are already colored
+  }
+
+  console.log("Fill All Uncolored");
 }
 
 // Fill all cells
