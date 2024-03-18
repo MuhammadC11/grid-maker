@@ -150,13 +150,25 @@ function fillAll() {
 
 // Clear all cells
 function clearAll() {
-  //clear all cells/restore all cells to their original/initial color and state
+  if (numRows === 0 && numCols === 0) {
+    alert("There are no cells to clear");
+    return;
+  }
+
+  let cellsCleared = 0; // counter for the number of cells cleared
+
   for (let i = 0; i < table.rows.length; i++) {
-    // loop through the rows
     for (let j = 0; j < table.rows[i].cells.length; j++) {
-      // loop through the cells in each row
-      table.rows[i].cells[j].style.backgroundColor = ""; // set the background color of the cell to the initial color
+      if (table.rows[i].cells[j].style.backgroundColor !== "") {
+        table.rows[i].cells[j].style.backgroundColor = "";
+        cellsCleared++;
+      }
     }
   }
-  console.log("Clear All"); // log the action
+
+  if (cellsCleared === 0) {
+    alert("All cells are already cleared!");
+  }
+
+  console.log("Clear All");
 }
