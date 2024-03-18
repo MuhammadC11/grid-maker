@@ -38,7 +38,7 @@ function addR() {
 
 // Add a column
 function addC() {
-  // add a new column to the table, perform all the same steps as adding a row, but for columns
+  // add a new column to the table, first check if there are no rows, then add a row and a cell to that row but after that, it will keep adding cells to the existing rows thus adding a new column.
   numCols++; // increment the number of columns
   if (numRows === 0) {
     // if there are no rows at the beginning
