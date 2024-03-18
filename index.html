@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Grid Maker</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <!-- Menu Buttons -->
     <button onclick="addR()">Add Row</button>
     <button onclick="addC()">Add Col</button>
@@ -14,29 +14,21 @@
     <button onclick="fillAll()">Fill All</button>
     <button onclick="clearAll()">Clear</button>
     <select onchange="selectColor()" id="selectedColorId">
-        <option value="SELECT">SELECT</option>
-        <option value="Red">Red</option>
-        <option value="Blue">Blue</option>
-        <option value="Green">Green</option>
-        <option value="Yellow">Yellow</option>
+      <option value="SELECT">SELECT</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Green">Green</option>
+      <option value="Yellow">Yellow</option>
     </select>
     <!-- Grid Table -->
     <table id="grid">
-        <p>Below is an example of table (grid) template for illustration purpose. 
-            You need to remove this code (tr and td elements) in your assignment
-            so that you will have an empty table as the starting point.</p>
-        <tr>
-            <td onclick="alert('Clicked a table cell');"></td>
-            <td onclick="alert('Clicked a table cell');"></td>
-            <td onclick="alert('Clicked a table cell');"></td>
-        </tr>
-        <tr>
-            <td onclick="alert('Clicked a table cell');"></td>
-            <td onclick="alert('Clicked a table cell');"></td>
-            <td onclick="alert('Clicked a table cell');"></td>
-        </tr>
+      <p>
+        Below is an example of table (grid) template for illustration purpose.
+        You need to remove this code (tr and td elements) in your assignment so
+        that you will have an empty table as the starting point.
+      </p>
     </table>
     <!-- Script -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
