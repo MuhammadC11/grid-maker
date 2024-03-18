@@ -63,13 +63,14 @@ function addC() {
 
 // Remove a row
 function removeR() {
-  // remove the last row from the table
+  if (numRows === 0) {
+    alert("There are no rows to remove"); // if there are no rows, alert the user
+    return;
+  }
 
-  table.deleteRow(table.rows.length - 1); // delete the last row from the table
+  // remove the last row from the table
+  table.deleteRow(-1); // delete the last row from the table
   numRows--; // decrement the number of rows
-  numCols = table.rows[0].cells.length; // set the number of columns to the number of cells in the first row
-  console.log(numRows); // log the number of rows
-  console.log(numCols); // log the number of columns
 }
 
 // Remove a column
