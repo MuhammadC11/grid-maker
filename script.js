@@ -10,6 +10,9 @@ window.onload = function () {
 // Add a row
 
 function addR() {
+  if (numRows == 0) {
+    numCols = 0; //reset the number of columns to 0 if there are no rows
+  }
   numRows++; // increment the number of rows
   let row = table.insertRow(); // insert a new row at the end of the table
 
@@ -38,6 +41,9 @@ function addR() {
 
 // Add a column
 function addC() {
+  if (numCols == 0) {
+    numRows = 0; //reset the number of rows to 0 if there are no columns
+  }
   // add a new column to the table, first check if there are no rows, then add a row and a cell to that row but after that, it will keep adding cells to the existing rows thus adding a new column.
   numCols++; // increment the number of columns
   if (numRows === 0) {
@@ -64,6 +70,7 @@ function addC() {
 // Remove a row
 function removeR() {
   if (numRows === 0) {
+    numCols = 0; //reset the number of columns to 0 if there are no rows
     alert("There are no rows to remove"); // if there are no rows, alert the user
     return;
   }
@@ -75,21 +82,23 @@ function removeR() {
 
 // Remove a column
 function removeC() {
-  // remove the last column from the table
+  if (numCols === 0) {
+    numRows = 0; //reset the number of rows to 0 if there are no columns
+    alert("There are no columns to remove"); // if there are no columns, alert the user
+    return;
+  }
 
+  // remove the last column from the table
   for (let i = 0; i < table.rows.length; i++) {
     // loop through the rows
-    table.rows[i].deleteCell(table.rows[i].cells.length - 1); // delete the last cell from each row
+    table.rows[i].deleteCell(-1); // delete the last cell from the row
   }
   numCols--; // decrement the number of columns
-  numRows = table.rows.length; // set the number of rows to the number of rows in the table
-  console.log(numRows); // log the number of rows
-  console.log(numCols); // log the number of columns
 }
 
 function selectColor() {
-  // get the selected color from the dropdown
-  colorSelected = document.getElementById("selectedColorId").value;
+  // get the selected color from the dropdown, this function is called when the user selects a color from the dropdown list
+  colorSelected = document.getElementById("selectedColorId").value; // get the selected colors value so its important to give the colors in the dropdown list the same value as their name
   console.log(colorSelected); // log the selected color
 }
 
