@@ -7,4 +7,4 @@ This project is a grid maker, you can add rows and columns by clicking on those 
 
 ----------
 
-## Group Members: Muhammad Chaudhry
+## Group Members: Muhammad Chaudhry, GitHub Username: MuhammadC11
