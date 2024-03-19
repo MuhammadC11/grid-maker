@@ -3,7 +3,7 @@ This project is a grid maker, you can add rows and columns by clicking on those 
 
 
 ### Live Link
-[Website link]((https://muhammadc11.github.io/grid-maker/)https://muhammadc11.github.io/grid-maker/)
+[Website link]([https://muhammadc11.github.io/grid-maker/])
 
 ----------
 
