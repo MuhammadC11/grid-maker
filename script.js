@@ -10,84 +10,82 @@ window.onload = function () {
 // Add a row
 
 function addR() {
-  numRows++; // increment the number of rows
-  let row = table.insertRow(); // insert a new row at the end of the table
-
-  // If there are no columns, add a column
-  if (numCols === 0) {
-    // if there are no columns
-    numCols++; // increment the number of columns
-    let cell = row.insertCell(0); // insert a new cell at the end of the row
-    cell.onclick = function () {
-      // add an event listener to the new cell
-      cell.style.backgroundColor = colorSelected;
-    };
-  } else {
-    for (let i = 0; i < table.rows[0].cells.length; i++) {
-      // loop through the cells in the first row
-      let cell = row.insertCell(i); // insert a new cell at the end of the row
-      cell.onclick = function () {
-        // add an event listener to the new cell
-        cell.style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
-      };
-    }
+  if (numRows === 0) {
+    //mostly for the second run after all rows are deleted
+    // if there are no rows
+    numCols = 0; // reset the number of columns to 0
   }
-  console.log(numRows); // log the number of rows
-  console.log(numCols); // log the number of columns
+  numRows++; // increment the number of rows
+  let addRow = table.insertRow(); // insert a new row at the end of the table
+
+  // Add cells to the row
+  for (let i = 0; i <= numCols; i++) {
+    let newCell = addRow.insertCell(); // insert a new cell at the end of the row
+    newCell.onclick = function () {
+      newCell.style.backgroundColor = colorSelected; // add an event listener to the new cell and set the background color of the cell to the selected color
+    };
+  }
+
+  console.log(numRows, numCols); // log the number of rows
 }
 
 // Add a column
 function addC() {
-  // add a new column to the table, first check if there are no rows, then add a row and a cell to that row but after that, it will keep adding cells to the existing rows thus adding a new column.
-  numCols++; // increment the number of columns
   if (numRows === 0) {
-    // if there are no rows at the beginning
-    numRows++; // increment the number of rows
-    let row = table.insertRow(); // insert a new row at the beginning of the table
-    let cell = row.insertCell(); // insert a new cell at the end of the row
+    //if there are no rows, add a row first
+    addR(); // add a row
+    return; // exit the function
+  }
+  numCols++; // increment the number of columns
+  for (let i = 0; i < table.rows.length; i++) {
+    // loop through the rows
+    let cell = table.rows[i].insertCell(); // insert a new cell at the end of the row
     cell.onclick = function () {
       // add an event listener to the new cell
       cell.style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
     };
-  } else {
-    for (let i = 0; i < table.rows.length; i++) {
-      // loop through the rows
-      let cell = table.rows[i].insertCell(-1); // insert a new cell at the end of the row
-      cell.onclick = function () {
-        // add an event listener to the new cell
-        cell.style.backgroundColor = colorSelected; // set the background color of the cell to the selected color
-      };
-    }
   }
+
+  console.log(numRows, numCols); // log the number of rows
 }
 
 // Remove a row
 function removeR() {
   if (numRows === 0) {
-    numCols = 0; //reset the number of columns to 0 if there are no rows
     alert("There are no rows to remove"); // if there are no rows, alert the user
     return;
   }
-
   // remove the last row from the table
   table.deleteRow(-1); // delete the last row from the table
   numRows--; // decrement the number of rows
+
+  if (numRows === 0) {
+    numCols = 0; //reset the number of columns to 0 if there are no rows
+  }
+
+  console.log(numRows, numCols); // log the number of rows
 }
 
 // Remove a column
 function removeC() {
   if (numCols === 0) {
     numRows = 0; //reset the number of rows to 0 if there are no columns
-    alert("There are no columns to remove"); // if there are no columns, alert the user
+    // remove the rows that exist in the table
+    while (table.rows.length > 0) {
+      table.deleteRow(0);
+    }
+    setTimeout(function () {
+      alert("There are no columns to remove"); // if there are no columns, alert the user
+    }, 0);
     return;
   }
-
-  // remove the last column from the table
+  numCols--; // decrement the number of columns
   for (let i = 0; i < table.rows.length; i++) {
     // loop through the rows
-    table.rows[i].deleteCell(-1); // delete the last cell from the row
+    table.rows[i].deleteCell(-1); // delete the last cell from each row
   }
-  numCols--; // decrement the number of columns
+
+  console.log(numRows, numCols); // log the number of rows
 }
 
 function selectColor() {
@@ -165,4 +163,18 @@ function clearAll() {
   }
 
   console.log("Clear All");
+}
+
+//after the user selects an option from the dropdown list, the background color of the dropdown list will change to the selected color
+function changeColor() {
+  let color = document.getElementById("selectedColorId").value;
+  document.getElementById("selectedColorId").style.backgroundColor = color;
+  document.getElementById("selectedColorId").style.color = "white";
+  if (color === "SELECT") {
+    document.getElementById("selectedColorId").style.backgroundColor = "white";
+    document.getElementById("selectedColorId").style.color = "black";
+  }
+  if (color.toLowerCase() === "yellow") {
+    document.getElementById("selectedColorId").style.color = "black";
+  }
 }
