@@ -11,28 +11,32 @@ window.onload = function () {
 
 function addR() {
   if (numRows === 0) {
+    //mostly for the second run after all rows are deleted
     // if there are no rows
     numCols = 0; // reset the number of columns to 0
   }
-  numRows++;
-  let addRow = table.insertRow();
+  numRows++; // increment the number of rows
+  let addRow = table.insertRow(); // insert a new row at the end of the table
 
   // Add cells to the row
   for (let i = 0; i <= numCols; i++) {
-    let newCell = addRow.insertCell();
+    let newCell = addRow.insertCell(); // insert a new cell at the end of the row
     newCell.onclick = function () {
-      newCell.style.backgroundColor = colorSelected;
+      newCell.style.backgroundColor = colorSelected; // add an event listener to the new cell and set the background color of the cell to the selected color
     };
   }
+
+  console.log(numRows, numCols); // log the number of rows
 }
 
 // Add a column
 function addC() {
   if (numRows === 0) {
-    addR();
-    return;
+    //if there are no rows, add a row first
+    addR(); // add a row
+    return; // exit the function
   }
-  numCols++;
+  numCols++; // increment the number of columns
   for (let i = 0; i < table.rows.length; i++) {
     // loop through the rows
     let cell = table.rows[i].insertCell(); // insert a new cell at the end of the row
@@ -42,8 +46,7 @@ function addC() {
     };
   }
 
-  console.log(numRows); // log the number of rows
-  console.log(numCols); // log the number of columns
+  console.log(numRows, numCols); // log the number of rows
 }
 
 // Remove a row
@@ -52,7 +55,6 @@ function removeR() {
     alert("There are no rows to remove"); // if there are no rows, alert the user
     return;
   }
-
   // remove the last row from the table
   table.deleteRow(-1); // delete the last row from the table
   numRows--; // decrement the number of rows
@@ -61,19 +63,20 @@ function removeR() {
     numCols = 0; //reset the number of columns to 0 if there are no rows
   }
 
-  console.log(numRows); // log the number of rows
-  console.log(numCols); // log the number of columns
+  console.log(numRows, numCols); // log the number of rows
 }
 
 // Remove a column
 function removeC() {
   if (numCols === 0) {
-    alert("There are no columns to remove"); // if there are no columns, alert the user
     numRows = 0; //reset the number of rows to 0 if there are no columns
     // remove the rows that exist in the table
     while (table.rows.length > 0) {
       table.deleteRow(0);
     }
+    setTimeout(function () {
+      alert("There are no columns to remove"); // if there are no columns, alert the user
+    }, 0);
     return;
   }
   numCols--; // decrement the number of columns
@@ -82,9 +85,6 @@ function removeC() {
     table.rows[i].deleteCell(-1); // delete the last cell from each row
   }
 
-  if (numCols === 0) {
-    numRows = 0; //reset the number of rows to 0 if there are no columns
-  }
   console.log(numRows, numCols); // log the number of rows
 }
 
